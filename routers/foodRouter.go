@@ -5,10 +5,10 @@ import (
 	controller "resturant-mg/controllers"
 )
 
-func FoodRoutes(incomingRoutes *gin.Engine){
-	
+func FoodRoutes(incomingRoutes *gin.Engine){	
 	incomingRoutes.GET("/foods", controller.GetFoods())
 	incomingRoutes.GET("/foods/:food_id", controller.GetFood())
 	incomingROutes.POST("/foods", controller.CreateFood())
 	incomingRoutes.PATCH("/foods/:food_id", controller.UpdateFood())
 }
+
