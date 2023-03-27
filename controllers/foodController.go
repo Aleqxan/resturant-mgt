@@ -40,7 +40,7 @@ func GetFood() gin.HandlerFunc{
 
 func CreateFood() gin.HandlerFunc{
 	return func(c *gin.Context){
-		context.WithTimeout(context.Background(), 100*time.Second)
+		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		var menu models.Menu
 		var food models.Food
 
@@ -61,8 +61,8 @@ func CreateFood() gin.HandlerFunc{
 			c.JSON(http.StatusInternalServerError, gin.H{"error":msg})
 			return
 		}
-		food.Created_at, _ = time.Parse(time.RFC3339, time.Now()).Format(time.RFC3339)
-		food.Created_at, _ = time.Parse(time.RFC3339, time.Now()).Format(time.RFC3339)
+		food.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
+		food.Created_at, _ = time.Parse(time.RFC3339, time.Now().Format(time.RFC3339))
 		food.ID = primitive.NewObjectID()
 		food.Food_id = food.ID.Hex()
 		var num = toFixed(*food.Price, 2)
